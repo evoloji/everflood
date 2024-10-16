@@ -1,0 +1,9 @@
+/* Harita için stil */
+#map {
+    height: 600px;
+}
+
+/* Atıf yazısını gizleme */
+.leaflet-control-attribution {
+    display: none;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evrim Haritası</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+        }
+        .leaflet-control-attribution {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>İzmir Merkezli Uydu Haritası</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Harita sınırlarını tanımlama (Türkiye ve Kıbrıs)
+
+                  
+        var bounds = [
+            [35.0, 25.0], // Güneybatı köşesi
+            [43.0, 45.0]  // Kuzeydoğu köşesi
+        ];
+
+        // Harita oluşturuluyor ve İzmir'e odaklanıyor
+        var map = L.map('map', {
+            center: [38.4237, 27.1428], // İzmir koordinatları
+            zoom: 13, // Yakınlaştırma seviyesi
+            maxBounds: bounds, // Haritayı Türkiye ve Kıbrıs sınırları dışına çıkarmayı engelle
+            minZoom: 6,
+            maxBoundsViscosity: 1.0 // Sınırlar dışına çıkmayı zorlaştır (yapışkanlık)
+        });
+
+        // Esri World Imagery uydu haritası ekleniyor
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: ''
+        }).addTo(map);
+    </script>
+</body>
+</html>
